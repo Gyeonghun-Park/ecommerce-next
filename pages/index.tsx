@@ -1,7 +1,21 @@
-import type { NextPage } from 'next';
+import type { InferGetStaticPropsType } from 'next';
+import getAllproducts from '@framework/product/get-all-products';
 
-const Home: NextPage = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
-};
+export async function getStaticProps() {
+  const products = await getAllproducts();
 
-export default Home;
+  return {
+    props: {
+      products,
+    },
+    revalidate: 4 * 60 * 60,
+  };
+}
+
+export default function Home({
+  products,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  getAllproducts();
+
+  return <div>{JSON.stringify(products)}</div>;
+}
