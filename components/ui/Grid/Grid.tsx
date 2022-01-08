@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import s from './Grid.module.css';
+import s from './Grid.module.scss';
 import cn from 'classnames';
 
 interface Props {
