@@ -5,7 +5,7 @@ export const Footer = () => {
         <div className="flex flex-col items-center mt-5">
           <div className="py-6">
             <p className="mb-6 text-sm font-bold text-primary-2">
-              © {new Date().getFullYear()} Eincode
+              © {new Date().getFullYear()} Next Store
             </p>
           </div>
         </div>

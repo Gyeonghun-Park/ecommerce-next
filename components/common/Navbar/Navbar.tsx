@@ -20,7 +20,7 @@ const Navbar: FC = () => {
               <a className={s.link}>Clothes</a>
             </Link>
             <Link href="/">
-              <a className={s.link}>Accesories</a>
+              <a className={s.link}>Accessories</a>
             </Link>
             <Link href="/">
               <a className={s.link}>Shoes</a>
