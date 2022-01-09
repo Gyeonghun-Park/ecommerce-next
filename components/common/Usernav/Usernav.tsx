@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import s from './Usernav.module.scss';
 import Link from 'next/link';
 import { Bag as Cart, Heart } from '@components/icons';
 import { useUI } from '@components/ui/context';
 
-const Usernav: FC = () => {
+function Usernav() {
   const { openSidebar } = useUI();
 
   return (
@@ -23,6 +22,6 @@ const Usernav: FC = () => {
       </ul>
     </nav>
   );
-};
+}
 
 export default Usernav;

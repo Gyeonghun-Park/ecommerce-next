@@ -1,12 +1,16 @@
-import { ComponentType, FC, HTMLAttributes, ReactNode } from 'react';
+import { ComponentType, HTMLAttributes, ReactNode } from 'react';
 
 interface Props {
-  children: ReactNode | ReactNode[];
-  el?: ComponentType<HTMLAttributes<HTMLElement>>;
+  el: ComponentType<HTMLAttributes<HTMLElement>>;
+  children: ReactNode;
 }
 
-const Container: FC<Props> = ({ children, el: Component = 'div' }) => {
+function Container({ children, el: Component }: Props) {
   return <Component className="px-6 mx-auto max-w-8xl">{children}</Component>;
+}
+
+Container.defaultProps = {
+  el: 'div',
 };
 
 export default Container;

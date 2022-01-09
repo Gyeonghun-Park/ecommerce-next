@@ -1,15 +1,15 @@
 import { Product } from '@common/types/product';
-import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './ProductCard.module.scss';
 
 interface Props {
   product: Product;
-  variant?: 'simple' | 'slim';
+  variant: 'simple' | 'slim';
 }
 const placeholderImage = '/product-image-placeholder.svg';
-const ProductCard: FC<Props> = ({ product, variant = 'simple' }) => {
+
+function ProductCard({ product, variant }: Props) {
   return (
     <Link href={`/products/${product.slug}`}>
       <a className={s.root}>
@@ -59,6 +59,10 @@ const ProductCard: FC<Props> = ({ product, variant = 'simple' }) => {
       </a>
     </Link>
   );
+}
+
+ProductCard.defaultProps = {
+  variant: 'simple',
 };
 
 export default ProductCard;

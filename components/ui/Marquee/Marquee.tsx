@@ -1,14 +1,14 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import Ticker from 'react-ticker';
 import s from './Marquee.module.scss';
 import cn from 'classnames';
 
 interface Props {
-  children: ReactNode[];
-  variant?: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary';
+  children: ReactNode;
 }
 
-const Marquee: FC<Props> = ({ children, variant = 'primary' }) => {
+function Marquee({ variant, children }: Props) {
   const rootClassName = cn(s.root, {
     [s.secondary]: variant === 'secondary',
   });
@@ -20,6 +20,10 @@ const Marquee: FC<Props> = ({ children, variant = 'primary' }) => {
       </Ticker>
     </div>
   );
+}
+
+Marquee.defaultProps = {
+  variant: 'primary',
 };
 
 export default Marquee;

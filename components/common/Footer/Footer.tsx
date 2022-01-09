@@ -1,4 +1,4 @@
-export const Footer = () => {
+function Footer() {
   return (
     <footer className="pt-1 bg-black">
       <div className="container px-6 mx-auto">
@@ -12,6 +12,6 @@ export const Footer = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

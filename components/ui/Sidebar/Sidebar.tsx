@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import {
   clearAllBodyScrollLocks,
   disableBodyScroll,
@@ -6,12 +6,12 @@ import {
 } from 'body-scroll-lock';
 
 interface Props {
-  children: any;
   isOpen: boolean;
   onClose: () => void;
+  children: ReactNode;
 }
 
-const Sidebar: FC<Props> = ({ children, isOpen, onClose }) => {
+function Sidebar({ children, isOpen, onClose }: Props) {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
@@ -49,6 +49,6 @@ const Sidebar: FC<Props> = ({ children, isOpen, onClose }) => {
       ) : null}
     </>
   );
-};
+}
 
 export default Sidebar;

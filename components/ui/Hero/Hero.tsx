@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import s from './Hero.module.scss';
 import Link from 'next/link';
 import { Container } from '@components/ui';
@@ -8,7 +7,7 @@ interface Props {
   description: string;
 }
 
-const Hero: FC<Props> = ({ headline, description }) => {
+function Hero({ headline, description }: Props) {
   return (
     <div className={'bg-black'}>
       <Container>
@@ -24,6 +23,6 @@ const Hero: FC<Props> = ({ headline, description }) => {
       </Container>
     </div>
   );
-};
+}
 
 export default Hero;

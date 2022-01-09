@@ -1,9 +1,8 @@
-import { FC } from 'react';
 import { Bag, Cross } from '@components/icons';
 import cn from 'classnames';
 import { useUI } from '@components/ui/context';
 
-const CartSidebar: FC = () => {
+function CartSidebar() {
   const isEmpty = true;
   const { closeSidebar } = useUI();
 
@@ -81,6 +80,6 @@ const CartSidebar: FC = () => {
       )}
     </div>
   );
-};
+}
 
 export default CartSidebar;

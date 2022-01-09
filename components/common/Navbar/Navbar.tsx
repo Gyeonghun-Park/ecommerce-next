@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import { Container } from '@components/ui';
 import Link from 'next/link';
 import s from './Navbar.module.scss';
 import { Usernav } from '@components/common';
 
-const Navbar: FC = () => {
+function Navbar() {
   return (
     <Container>
       <div className={s.root}>
@@ -33,6 +32,6 @@ const Navbar: FC = () => {
       </div>
     </Container>
   );
-};
+}
 
 export default Navbar;
