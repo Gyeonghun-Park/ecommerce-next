@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import s from './ProductView.module.scss';
-import { Container } from '@components/ui';
+import { Container, Button } from '@components/ui';
 import Image from 'next/image';
 import { Product } from '@common/types/product';
 import { ProductSlider } from '@components/product';
@@ -12,7 +12,7 @@ interface Props {
 function ProductView({ product }: Props) {
   return (
     <Container>
-      <div className={cn(s.root, 'fit')}>
+      <div className={cn(s.root, 'fit', 'mb-5')}>
         <div className={cn(s.productDisplay, 'fit')}>
           <div className={s.nameBox}>
             <h1 className={s.name}>{product.name}</h1>
@@ -40,21 +40,20 @@ function ProductView({ product }: Props) {
         <div className={s.sidebar}>
           <section>
             <div className="pb-4">
-              <h2 className="uppercase font-medium">Color</h2>
+              <h2 className="font-medium uppercase">Color</h2>
               <div className="flex flex-row py-4">Variant Options Here!</div>
             </div>
-            <div className="pb-14 break-words w-full max-w-xl text-lg">
+            <div className="w-full max-w-xl text-lg break-words pb-14">
               {product.description}
             </div>
           </section>
           <div>
-            <button
-              onClick={() => {}}
-              aria-label="Add to Cart"
+            <Button
               className={s.button}
+              onClick={() => alert('adding to cart')}
             >
               Add to Cart
-            </button>
+            </Button>
           </div>
         </div>
       </div>
