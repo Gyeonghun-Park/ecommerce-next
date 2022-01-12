@@ -1,10 +1,12 @@
 import { Bag, Cross } from '@components/icons';
 import cn from 'classnames';
 import { useUI } from '@components/ui/context';
+import useCart from '@framework/cart/use-cart';
 
 function CartSidebar() {
   const isEmpty = true;
   const { closeSidebar } = useUI();
+  const cart = useCart();
 
   const rootClass = cn('h-full flex flex-col', {
     'bg-secondary text-secondary': isEmpty,
@@ -13,7 +15,7 @@ function CartSidebar() {
   return (
     <div className={rootClass}>
       <header className="px-4 pt-6 pb-4 sm:px-6">
-        <div className="flex justify-between items-start space-x-3">
+        <div className="flex items-start justify-between space-x-3">
           <div className="flex items-center h-7">
             <button
               onClick={closeSidebar}
@@ -26,8 +28,8 @@ function CartSidebar() {
       </header>
 
       {isEmpty ? (
-        <div className="flex flex-col flex-1 justify-center items-center px-4">
-          <span className="flex justify-center items-center p-12 w-16 h-16 rounded-full border border-dashed border-primary bg-secondary text-secondary">
+        <div className="flex flex-col items-center justify-center flex-1 px-4">
+          <span className="flex items-center justify-center w-16 h-16 p-12 border border-dashed rounded-full border-primary bg-secondary text-secondary">
             <Bag className="absolute" />
           </span>
           <h2 className="pt-6 text-2xl font-bold tracking-wide text-center">
@@ -40,7 +42,7 @@ function CartSidebar() {
       ) : (
         <>
           <div className="flex-1 px-4 sm:px-6">
-            <h2 className="inline-block pt-1 pb-4 text-base text-2xl font-bold tracking-wide leading-7">
+            <h2 className="inline-block pt-1 pb-4 text-base text-2xl font-bold leading-7 tracking-wide">
               My Cart
             </h2>
             <ul className="py-6 space-y-6 border-t sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-accents-3">
