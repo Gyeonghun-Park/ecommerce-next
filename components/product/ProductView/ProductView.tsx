@@ -7,6 +7,7 @@ import { Product } from '@common/types/product';
 import { ProductSlider, Swatch } from '@components/product';
 import { useUI } from '@components/ui/context';
 import { Choices, getVariant } from '../helpers';
+import useAddItem from '@framework/cart/use-add-item';
 
 interface Props {
   product: Product;
@@ -15,10 +16,11 @@ interface Props {
 function ProductView({ product }: Props) {
   const [choices, setChoices] = useState<Choices>({});
   const { openSidebar } = useUI();
+  const addItem = useAddItem();
 
   const variant = getVariant(product, choices);
 
-  const addToCart = () => {
+  const addToCart = async () => {
     try {
       const item = {
         productId: String(product.id),
@@ -26,7 +28,8 @@ function ProductView({ product }: Props) {
         variantOptions: variant?.options,
       };
 
-      alert(JSON.stringify(item));
+      const output = await addItem(item);
+      alert(JSON.stringify(output));
       openSidebar();
     } catch {}
   };
@@ -87,7 +90,7 @@ function ProductView({ product }: Props) {
                 </div>
               </div>
             ))}
-            <div className="pb-14 w-full max-w-xl text-lg break-words">
+            <div className="w-full max-w-xl text-lg break-words pb-14">
               {product.description}
             </div>
           </section>

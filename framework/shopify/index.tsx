@@ -7,7 +7,7 @@ import { getConfig } from './api/config';
 import { shopifyHooks } from './hooks';
 
 interface ShopifyApiProviderProps {
-  children: ReactNode | ReactNode[];
+  children: ReactNode;
 }
 
 const config = getConfig();

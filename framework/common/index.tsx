@@ -22,6 +22,5 @@ export function ApiProvider({ children, config, hooks }: ApiProviderProps) {
   );
 }
 
-export const useApiProvider = () => {
-  return useContext(ApiContext) as ApiProviderContext;
-};
+export const useApiProvider = () =>
+  useContext(ApiContext) as ApiProviderContext;
