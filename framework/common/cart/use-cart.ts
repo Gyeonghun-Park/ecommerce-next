@@ -1,18 +1,41 @@
-import { useHook, useSWRHook } from '../utils/use-hook';
-import { ApiHooks } from '@common/types/hooks';
-import Cookies from 'js-cookie';
-import { useApiProvider } from '@common';
-
-const useCart = () => {
-  const hook = useHook((hooks: ApiHooks) => hooks.cart.useCart);
-  const { checkoutCookie } = useApiProvider();
-
-  const fetcherWrapper: typeof hook.fetcher = (context) => {
-    context.input.checkoutId = Cookies.get(checkoutCookie);
-    return hook.fetcher(context);
-  };
-
-  return useSWRHook({ ...hook, fetcher: fetcherWrapper });
-};
+import useCart from '@common/cart/use-cart';
+import { createCheckout, getCheckoutQuery } from '@framework/utils';
+import { useMemo } from 'react';
 
 export default useCart;
+
+export const handler = {
+  fetchOptions: {
+    // get checkout query
+    query: getCheckoutQuery,
+  },
+  async fetcher({ fetch, options, input: { checkoutId } }: any) {
+    let checkout;
+
+    if (checkoutId) {
+      const { data } = await fetch({
+        ...options,
+        variables: {
+          checkoutId,
+        },
+      });
+      checkout = data.node;
+    } else {
+      checkout = await createCheckout(fetch);
+    }
+
+    // Normalize checkout !
+    return checkout;
+  },
+  useHook: ({ useData }: any) => {
+    const data = useData({
+      swrOptions: {
+        revalidateOnFocus: false,
+      },
+    });
+
+    return useMemo(() => {
+      return data;
+    }, [data]);
+  },
+};
